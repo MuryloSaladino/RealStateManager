@@ -3,6 +3,7 @@ package com.bosch.realstatemanager.entities;
 import jakarta.persistence.*;
 
 import java.sql.Timestamp;
+import java.util.Set;
 
 @Entity
 @Table(name = "UserEntity")
@@ -23,6 +24,9 @@ public class UserEntity extends BaseEntity {
     @Column(name = "deletedAt")
     @Temporal(TemporalType.TIMESTAMP)
     private Timestamp deletedAt;
+
+    @OneToMany(mappedBy = "userEntity")
+    private Set<ScheduleEntity> scheduleEntities;
 
 
     public String getName() { return name; }
@@ -54,4 +58,6 @@ public class UserEntity extends BaseEntity {
         this.updateUpdatedAt();
         this.deletedAt = deletedAt;
     }
+
+    public Set<ScheduleEntity> getScheduleEntities() { return scheduleEntities; }
 }

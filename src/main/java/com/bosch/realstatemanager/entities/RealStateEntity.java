@@ -2,6 +2,8 @@ package com.bosch.realstatemanager.entities;
 
 import jakarta.persistence.*;
 
+import java.util.Set;
+
 @Entity
 @Table(name = "RealStateEntity")
 public class RealStateEntity extends BaseEntity {
@@ -22,6 +24,9 @@ public class RealStateEntity extends BaseEntity {
     @ManyToOne
     @JoinColumn(name = "real_state_category_entity_id", nullable = false)
     private RealStateCategoryEntity realStateCategory;
+
+    @OneToMany(mappedBy = "realStateEntity")
+    private Set<RealStateEntity> realStateEntities;
 
 
     public Boolean getSold() { return sold; }
@@ -54,4 +59,5 @@ public class RealStateEntity extends BaseEntity {
         this.realStateCategory = realStateCategory;
     }
 
+    public Set<RealStateEntity> getRealStateEntities() { return realStateEntities; }
 }

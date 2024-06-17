@@ -26,7 +26,7 @@ public class RealStateEntity extends BaseEntity {
     private RealStateCategoryEntity realStateCategory;
 
     @OneToMany(mappedBy = "realStateEntity")
-    private Set<RealStateEntity> realStateEntities;
+    private Set<ScheduleEntity> realStateEntities;
 
 
     public Boolean getSold() { return sold; }
@@ -59,5 +59,5 @@ public class RealStateEntity extends BaseEntity {
         this.realStateCategory = realStateCategory;
     }
 
-    public Set<RealStateEntity> getRealStateEntities() { return realStateEntities; }
+    public Set<ScheduleEntity> getScheduleEntities() { return realStateEntities; }
 }

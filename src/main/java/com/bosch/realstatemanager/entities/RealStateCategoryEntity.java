@@ -16,7 +16,7 @@ public class RealStateCategoryEntity extends BaseEntity {
     @Temporal(TemporalType.TIMESTAMP)
     private Timestamp deletedAt;
 
-    @OneToMany(mappedBy = "category")
+    @OneToMany(mappedBy = "realStateCategory")
     private Set<RealStateEntity> realStateEntities;
 
 

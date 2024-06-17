@@ -1,8 +1,8 @@
 package com.bosch.realstatemanager.entities;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
+
+import java.sql.Timestamp;
 
 @Entity
 @Table(name = "AddressEntity")
@@ -22,6 +22,10 @@ public class AddressEntity extends BaseEntity {
 
     @Column(name = "state")
     private String state;
+
+    @Column(name = "deletedAt")
+    @Temporal(TemporalType.TIMESTAMP)
+    private Timestamp deletedAt;
 
 
     public String getStreet() { return street; }
@@ -52,5 +56,11 @@ public class AddressEntity extends BaseEntity {
     public void setState(String state) {
         this.updateUpdatedAt();
         this.state = state;
+    }
+
+    public Timestamp getDeletedAt() { return deletedAt; }
+    public void setDeletedAt(Timestamp deletedAt) {
+        this.updateUpdatedAt();
+        this.deletedAt = deletedAt;
     }
 }

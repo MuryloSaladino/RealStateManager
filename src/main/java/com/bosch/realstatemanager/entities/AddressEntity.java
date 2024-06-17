@@ -1,6 +1,7 @@
 package com.bosch.realstatemanager.entities;
 
 import jakarta.persistence.*;
+import jakarta.validation.constraints.NotNull;
 
 import java.sql.Timestamp;
 
@@ -26,6 +27,10 @@ public class AddressEntity extends BaseEntity {
     @Column(name = "deletedAt")
     @Temporal(TemporalType.TIMESTAMP)
     private Timestamp deletedAt;
+
+    @OneToOne(mappedBy = "address")
+    public RealStateEntity realStateEntity;
+
 
 
     public String getStreet() { return street; }

@@ -1,4 +1,4 @@
-package com.bosch.realstatemanager;
+package com.bosch.realstatemanager.config;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;

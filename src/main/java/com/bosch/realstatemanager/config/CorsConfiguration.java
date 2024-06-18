@@ -1,4 +1,4 @@
-package com.bosch.realstatemanager;
+package com.bosch.realstatemanager.config;
 
 import org.springframework.context.annotation.Configuration;
 import org.springframework.web.servlet.config.annotation.CorsRegistry;

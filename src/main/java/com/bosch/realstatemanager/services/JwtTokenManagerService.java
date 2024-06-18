@@ -12,7 +12,7 @@ import javax.crypto.SecretKey;
 import java.util.Date;
 
 @Service
-public class JwtTokenManager implements IJwtTokenManager {
+public class JwtTokenManagerService implements IJwtTokenManager {
 
     private static final SecretKey secretKey = Jwts.SIG.HS256.key().build();
 

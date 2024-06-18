@@ -9,4 +9,5 @@ public interface IUserEntityService {
     List<UserEntity> getUsers();
     UserEntity getUser(Long id);
     UserEntity updateUser(Long id);
+    void deleteUser(Long id);
 }

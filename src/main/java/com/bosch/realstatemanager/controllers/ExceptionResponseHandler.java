@@ -1,4 +1,4 @@
-package com.bosch.realstatemanager;
+package com.bosch.realstatemanager.controllers;
 
 import jakarta.servlet.http.HttpServletRequest;
 import org.springframework.http.HttpStatus;
@@ -13,7 +13,7 @@ import java.util.List;
 import java.util.Map;
 
 @ControllerAdvice
-public class ValidationExceptionHandler {
+public class ExceptionResponseHandler {
 
     @ExceptionHandler(MethodArgumentNotValidException.class)
     public ResponseEntity<?> notValid(MethodArgumentNotValidException ex, HttpServletRequest request) {

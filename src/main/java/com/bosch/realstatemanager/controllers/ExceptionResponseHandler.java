@@ -6,6 +6,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
+import org.springframework.web.server.ResponseStatusException;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -26,4 +27,13 @@ public class ExceptionResponseHandler {
 
         return new ResponseEntity<>(result, HttpStatus.BAD_REQUEST);
     }
+
+    @ExceptionHandler(ResponseStatusException.class)
+    public ResponseEntity<Message> responseError(ResponseStatusException ex, HttpServletRequest request) {
+
+        return ResponseEntity
+                .status(ex.getStatusCode())
+                .body(new Message(ex.getMessage()));
+    }
+    public record Message(String message) {}
 }

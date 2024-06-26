@@ -1,6 +1,9 @@
 package com.bosch.realstatemanager.services.db;
 
+import com.bosch.realstatemanager.dto.user.UserCreationPayload;
+import com.bosch.realstatemanager.dto.user.UserUpdatePayload;
 import com.bosch.realstatemanager.entities.UserEntity;
+import com.bosch.realstatemanager.exceptions.NotFoundException;
 import com.bosch.realstatemanager.interfaces.UserEntityService;
 import com.bosch.realstatemanager.repositories.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,45 +20,53 @@ public class UserEntityServiceDefault implements UserEntityService {
     @Autowired
     private UserRepository userRepository;
 
-    private static final BCryptPasswordEncoder encoder = new BCryptPasswordEncoder(11);
+    @Autowired
+    private BCryptPasswordEncoder bCryptPasswordEncoder;
 
     @Override
-    public UserEntity save(UserEntity user) {
+    public UserEntity save(UserCreationPayload payload) {
 
-        user.setPassword(encoder.encode(user.getPassword()));
+        UserEntity newUser = new UserEntity(payload);
+        newUser.setPassword(bCryptPasswordEncoder.encode(newUser.getPassword()));
 
-        return userRepository.save(user);
+        return userRepository.save(newUser);
     }
 
     @Override
-    public List<UserEntity> getUsers() {
-
+    public List<UserEntity> readAll() {
         return userRepository.findAll();
     }
 
     @Override
-    public UserEntity getUser(Long id) {
+    public UserEntity readById(Long id) {
 
-        var user = userRepository.findById(id);
+        var userQuery = userRepository.findById(id);
+        if(userQuery.isEmpty()) throw new NotFoundException();
 
-        if(user.isEmpty()) throw new ResponseStatusException(HttpStatusCode.valueOf(404));
+        return userQuery.get();
+    }
 
-        return user.get();
+    @Override
+    public UserEntity readByUsername(String username) {
+
+        var userQuery = userRepository.findByUsername(username);
+        if(userQuery.isEmpty()) throw new NotFoundException();
+
+        return userQuery.get();
+    }
+
+    @Override
+    public UserEntity updateUser(Long id, UserUpdatePayload payload) {
+
+        throw new ResponseStatusException(HttpStatusCode.valueOf(501));
     }
 
     @Override
     public void deleteUser(Long id) {
 
-        var user = userRepository.findById(id);
-
-        if(user.isEmpty()) throw new ResponseStatusException(HttpStatusCode.valueOf(404));
+        var userQuery = userRepository.findById(id);
+        if(userQuery.isEmpty()) throw new NotFoundException();
 
         userRepository.deleteById(id);
-    }
-
-    @Override
-    public UserEntity updateUser(Long id) {
-
-        throw new ResponseStatusException(HttpStatusCode.valueOf(501));
     }
 }

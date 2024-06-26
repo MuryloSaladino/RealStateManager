@@ -1,5 +1,6 @@
-package com.bosch.realstatemanager.services.db;
+package com.bosch.realstatemanager.services;
 
+import com.bosch.realstatemanager.exceptions.NotFoundException;
 import com.bosch.realstatemanager.interfaces.JwtTokenManager;
 import com.bosch.realstatemanager.interfaces.LoginService;
 import com.bosch.realstatemanager.repositories.UserRepository;
@@ -24,14 +25,13 @@ public class LoginServiceDefault implements LoginService {
     @Override
     public String login(String email, String password) {
 
-        var user = userRepository.findByEmail(email);
+        var userQuery = userRepository.findByEmail(email);
+        if(userQuery.isEmpty()) throw new NotFoundException();
 
-        if(user == null) throw new ResponseStatusException(HttpStatusCode.valueOf(401));
-
-        var match = encoder.matches(password, user.getPassword());
+        var match = encoder.matches(password, userQuery.get().getPassword());
 
         if(!match) throw new ResponseStatusException(HttpStatusCode.valueOf(401));
 
-        return jwtTokenManager.getToken(user.getId());
+        return "jwtTokenManager.getToken(user.getId())";
     }
 }

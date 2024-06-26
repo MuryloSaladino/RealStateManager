@@ -17,6 +17,6 @@ public class LoginController {
 
     @PostMapping("")
     public String login(@RequestBody LoginPayload payload) {
-        return loginService.login(payload.email(), payload.password());
+        return loginService.login(payload.email, payload.password);
     }
 }

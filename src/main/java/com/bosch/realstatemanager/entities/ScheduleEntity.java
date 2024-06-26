@@ -3,6 +3,7 @@ package com.bosch.realstatemanager.entities;
 import jakarta.persistence.*;
 
 import java.sql.Time;
+import java.sql.Timestamp;
 import java.util.Date;
 
 @Entity
@@ -18,12 +19,19 @@ public class ScheduleEntity extends BaseEntity {
     private Time hour;
 
     @ManyToOne
-    @JoinColumn(name = "user_entity_id", nullable = false)
+    @JoinColumn(name = "userEntityId", nullable = false)
     private UserEntity userEntity;
 
     @ManyToOne
-    @JoinColumn(name = "real_state_entity_id", nullable = false)
+    @JoinColumn(name = "realStateEntityId", nullable = false)
     private RealStateEntity realStateEntity;
+
+    @Column(name = "deletedAt")
+    @Temporal(TemporalType.TIMESTAMP)
+    private Timestamp deletedAt;
+
+
+    public ScheduleEntity() {}
 
 
     public Date getDate() { return date; }
@@ -36,6 +44,12 @@ public class ScheduleEntity extends BaseEntity {
     public void setHour(Time hour) {
         this.updateUpdatedAt();
         this.hour = hour;
+    }
+
+    public Timestamp getDeletedAt() { return deletedAt; }
+    public void setDeletedAt(Timestamp deletedAt) {
+        this.updateUpdatedAt();
+        this.deletedAt = deletedAt;
     }
 
     public UserEntity getUserEntity() { return userEntity; }

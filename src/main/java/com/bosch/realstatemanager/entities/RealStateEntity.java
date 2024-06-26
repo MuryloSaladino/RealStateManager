@@ -2,6 +2,7 @@ package com.bosch.realstatemanager.entities;
 
 import jakarta.persistence.*;
 
+import java.sql.Timestamp;
 import java.util.Set;
 
 @Entity
@@ -14,15 +15,19 @@ public class RealStateEntity extends BaseEntity {
     @Column(name = "price")
     private Float price;
 
-    @Column(name = "size")
-    private Integer size;
+    @Column(name = "squaredMeters")
+    private Integer squaredMeters;
+
+    @Column(name = "deletedAt")
+    @Temporal(TemporalType.TIMESTAMP)
+    private Timestamp deletedAt;
 
     @OneToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "address_entity_id", referencedColumnName = "id")
+    @JoinColumn(name = "addressEntityId", referencedColumnName = "id")
     private AddressEntity address;
 
     @ManyToOne
-    @JoinColumn(name = "real_state_category_entity_id", nullable = false)
+    @JoinColumn(name = "realStateCategoryEntityId", nullable = false)
     private RealStateCategoryEntity realStateCategory;
 
     @OneToMany(mappedBy = "realStateEntity")
@@ -41,10 +46,16 @@ public class RealStateEntity extends BaseEntity {
         this.price = price;
     }
 
-    public Integer getSize() { return size; }
-    public void setSize(Integer size) {
+    public Integer getSize() { return squaredMeters; }
+    public void setSize(Integer squaredMeters) {
         this.updateUpdatedAt();
-        this.size = size;
+        this.squaredMeters = squaredMeters;
+    }
+
+    public Timestamp getDeletedAt() { return deletedAt; }
+    public void setDeletedAt(Timestamp deletedAt) {
+        this.updateUpdatedAt();
+        this.deletedAt = deletedAt;
     }
 
     public AddressEntity getAddress() { return address; }

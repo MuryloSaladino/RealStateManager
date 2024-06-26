@@ -1,6 +1,6 @@
 package com.bosch.realstatemanager.services;
 
-import com.bosch.realstatemanager.interfaces.IJwtTokenManager;
+import com.bosch.realstatemanager.interfaces.JwtTokenManager;
 import io.jsonwebtoken.Jwt;
 import io.jsonwebtoken.JwtException;
 import io.jsonwebtoken.Jwts;
@@ -12,7 +12,7 @@ import javax.crypto.SecretKey;
 import java.util.Date;
 
 @Service
-public class JwtTokenManagerService implements IJwtTokenManager {
+public class JwtTokenManagerService implements JwtTokenManager {
 
     private static final SecretKey secretKey = Jwts.SIG.HS256.key().build();
 

@@ -1,10 +1,10 @@
 package com.bosch.realstatemanager.config;
 
-import com.bosch.realstatemanager.interfaces.IDotenvService;
-import com.bosch.realstatemanager.interfaces.IJwtTokenManager;
+import com.bosch.realstatemanager.interfaces.DotenvProvider;
+import com.bosch.realstatemanager.interfaces.JwtTokenManager;
 import com.bosch.realstatemanager.interfaces.dbservices.ILoginService;
 import com.bosch.realstatemanager.interfaces.dbservices.IUserEntityService;
-import com.bosch.realstatemanager.services.DotenvService;
+import com.bosch.realstatemanager.services.DotenvProviderService;
 import com.bosch.realstatemanager.services.JwtTokenManagerService;
 import com.bosch.realstatemanager.services.dbservices.LoginServiceDefault;
 import com.bosch.realstatemanager.services.dbservices.UserEntityServiceDefault;
@@ -17,8 +17,8 @@ import org.springframework.context.annotation.Scope;
 public class DependenciesConfiguration {
 
     @Bean @Scope()
-    public IDotenvService dotenvService() {
-        return new DotenvService();
+    public DotenvProvider dotenvService() {
+        return new DotenvProviderService();
     }
 
     @Bean @Scope() @Primary
@@ -32,7 +32,7 @@ public class DependenciesConfiguration {
     }
 
     @Bean @Scope() @Primary
-    public IJwtTokenManager jwtTokenManager() {
+    public JwtTokenManager jwtTokenManager() {
         return new JwtTokenManagerService();
     }
 }

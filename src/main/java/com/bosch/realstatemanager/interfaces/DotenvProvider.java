@@ -1,5 +1,5 @@
 package com.bosch.realstatemanager.interfaces;
 
-public interface IDotenvService {
+public interface DotenvProvider {
     String getEnv(String key);
 }

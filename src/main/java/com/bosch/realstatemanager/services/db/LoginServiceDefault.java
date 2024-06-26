@@ -1,7 +1,7 @@
-package com.bosch.realstatemanager.services.dbservices;
+package com.bosch.realstatemanager.services.db;
 
 import com.bosch.realstatemanager.interfaces.JwtTokenManager;
-import com.bosch.realstatemanager.interfaces.dbservices.ILoginService;
+import com.bosch.realstatemanager.interfaces.LoginService;
 import com.bosch.realstatemanager.repositories.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatusCode;
@@ -10,7 +10,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.server.ResponseStatusException;
 
 @Service
-public class LoginServiceDefault implements ILoginService {
+public class LoginServiceDefault implements LoginService {
 
     @Autowired
     private UserRepository userRepository;

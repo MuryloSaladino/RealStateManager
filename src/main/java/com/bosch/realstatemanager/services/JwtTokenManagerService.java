@@ -14,29 +14,7 @@ import java.util.Date;
 @Service
 public class JwtTokenManagerService implements JwtTokenManager {
 
-    private static final SecretKey secretKey = Jwts.SIG.HS256.key().build();
+//    private static final String secretKey = ;
 
-    @Override
-    public String getToken(Long userId) {
-        return Jwts.builder().id(userId.toString()).signWith(secretKey).compact();
-    }
 
-    @Override
-    public String getToken(Long userId, Date expiration) {
-        return Jwts.builder().id(userId.toString()).expiration(expiration).signWith(secretKey).compact();
-    }
-
-    @Override
-    public Jwt<?,?> validateToken(String token) {
-
-        Jwt<?,?> jwt;
-
-        try {
-            jwt = Jwts.parser().verifyWith(secretKey).build().parse(token);
-        } catch (JwtException e) {
-            throw new ResponseStatusException(HttpStatusCode.valueOf(401));
-        }
-
-        return jwt;
-    }
 }

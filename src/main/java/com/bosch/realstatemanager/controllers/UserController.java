@@ -1,7 +1,7 @@
 package com.bosch.realstatemanager.controllers;
 
 import com.bosch.realstatemanager.entities.UserEntity;
-import com.bosch.realstatemanager.interfaces.dbservices.IUserEntityService;
+import com.bosch.realstatemanager.interfaces.UserEntityService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -13,7 +13,7 @@ import java.util.List;
 public class UserController {
 
     @Autowired
-    private IUserEntityService userService;
+    private UserEntityService userService;
 
     @PostMapping("")
     public ResponseEntity<UserEntity> createUser(@RequestBody UserEntity user) {

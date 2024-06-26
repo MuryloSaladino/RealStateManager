@@ -1,7 +1,7 @@
-package com.bosch.realstatemanager.services.dbservices;
+package com.bosch.realstatemanager.services.db;
 
 import com.bosch.realstatemanager.entities.UserEntity;
-import com.bosch.realstatemanager.interfaces.dbservices.IUserEntityService;
+import com.bosch.realstatemanager.interfaces.UserEntityService;
 import com.bosch.realstatemanager.repositories.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatusCode;
@@ -12,7 +12,7 @@ import org.springframework.web.server.ResponseStatusException;
 import java.util.List;
 
 @Service
-public class UserEntityServiceDefault implements IUserEntityService {
+public class UserEntityServiceDefault implements UserEntityService {
 
     @Autowired
     private UserRepository userRepository;
@@ -20,11 +20,11 @@ public class UserEntityServiceDefault implements IUserEntityService {
     private static final BCryptPasswordEncoder encoder = new BCryptPasswordEncoder(11);
 
     @Override
-    public void save(UserEntity user) {
+    public UserEntity save(UserEntity user) {
 
         user.setPassword(encoder.encode(user.getPassword()));
 
-        userRepository.save(user);
+        return userRepository.save(user);
     }
 
     @Override

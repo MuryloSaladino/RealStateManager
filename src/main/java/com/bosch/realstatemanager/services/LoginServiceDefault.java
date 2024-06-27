@@ -10,6 +10,9 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.web.server.ResponseStatusException;
 
+import java.util.HashMap;
+import java.util.Map;
+
 @Service
 public class LoginServiceDefault implements LoginService {
 
@@ -32,6 +35,9 @@ public class LoginServiceDefault implements LoginService {
 
         if(!match) throw new ResponseStatusException(HttpStatusCode.valueOf(401));
 
-        return "jwtTokenManager.getToken(user.getId())";
+        Map<String, Object> claims = new HashMap<>();
+        claims.put("admin", userQuery.get().isAdmin());
+
+        return jwtTokenManager.buildToken(claims, userQuery.get().getUsername(), userQuery.get().getId());
     }
 }

@@ -33,11 +33,12 @@ public class JwtTokenManagerService implements JwtTokenManager {
         return Keys.hmacShaKeyFor(keyBytes);
     }
 
-    public String buildToken(Map<String, Object> claims, String subject) {
+    public String buildToken(Map<String, Object> claims, String subject, Long userId) {
         return Jwts
                 .builder()
-                .claims(claims)
                 .subject(subject)
+                .id(userId.toString())
+                .claims(claims)
                 .issuedAt(new Date(System.currentTimeMillis()))
                 .expiration(new Date(System.currentTimeMillis() + expirationTime))
                 .signWith(getSignInKey())

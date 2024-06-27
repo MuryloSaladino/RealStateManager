@@ -1,5 +1,6 @@
 package com.bosch.realstatemanager.controllers;
 
+import com.bosch.realstatemanager.exceptions.BadRequestException;
 import jakarta.servlet.http.HttpServletRequest;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -15,6 +16,8 @@ import java.util.Map;
 
 @ControllerAdvice
 public class ExceptionResponseHandler {
+
+    public record Message(String message) {}
 
     @ExceptionHandler(MethodArgumentNotValidException.class)
     public ResponseEntity<?> notValid(MethodArgumentNotValidException ex, HttpServletRequest request) {
@@ -35,5 +38,9 @@ public class ExceptionResponseHandler {
                 .status(ex.getStatusCode())
                 .body(new Message(ex.getMessage()));
     }
-    public record Message(String message) {}
+
+    @ExceptionHandler({ IllegalArgumentException.class })
+    public void handleBadRequest(Exception ex, HttpServletRequest request) {
+        throw new BadRequestException();
+    }
 }

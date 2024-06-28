@@ -40,12 +40,12 @@ public class UserEntity extends BaseEntity {
 
     public UserEntity(UserCreationPayload payload) {
         super();
-        this.name = payload.name;
-        this.username = payload.username;
-        this.email = payload.email;
-        this.password = payload.password;
-        this.phone = payload.phone;
-        this.admin = payload.admin;
+        this.name = payload.name();
+        this.username = payload.username();
+        this.email = payload.email();
+        this.password = payload.password();
+        this.phone = payload.phone();
+        this.admin = payload.admin();
     }
 
 

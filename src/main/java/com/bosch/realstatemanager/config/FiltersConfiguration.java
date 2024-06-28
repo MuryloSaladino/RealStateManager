@@ -14,7 +14,7 @@ public class FiltersConfiguration {
     ValidateTokenFilter validateTokenFilter;
 
     @Bean @Scope()
-    protected FilterRegistrationBean<ValidateTokenFilter> validateTokenFilter() {
+    protected FilterRegistrationBean<ValidateTokenFilter> validateToken() {
 
         FilterRegistrationBean<ValidateTokenFilter> filter = new FilterRegistrationBean<ValidateTokenFilter>();
 

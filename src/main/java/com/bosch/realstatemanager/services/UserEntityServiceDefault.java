@@ -1,4 +1,4 @@
-package com.bosch.realstatemanager.services.db;
+package com.bosch.realstatemanager.services;
 
 import com.bosch.realstatemanager.dto.user.UserCreationPayload;
 import com.bosch.realstatemanager.dto.user.UserUpdatePayload;

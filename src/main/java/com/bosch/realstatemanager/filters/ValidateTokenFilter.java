@@ -2,6 +2,8 @@ package com.bosch.realstatemanager.filters;
 
 import com.bosch.realstatemanager.exceptions.UnauthorizedException;
 import com.bosch.realstatemanager.interfaces.JwtTokenManager;
+import com.bosch.realstatemanager.sessions.UserSession;
+import io.jsonwebtoken.Claims;
 import jakarta.servlet.*;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
@@ -16,6 +18,9 @@ public class ValidateTokenFilter implements Filter {
     @Autowired
     JwtTokenManager jwtTokenManager;
 
+    @Autowired
+    UserSession userSession;
+
     @Override
     public void doFilter(
             ServletRequest servletRequest,
@@ -26,8 +31,13 @@ public class ValidateTokenFilter implements Filter {
         HttpServletRequest request = (HttpServletRequest) servletRequest;
         HttpServletResponse response = (HttpServletResponse) servletResponse;
 
-        String token = request.getHeader("Authorization");
+//        String token = request.getHeader("Authorization");
 
-        if(!jwtTokenManager.isTokenValid(token)) throw new UnauthorizedException();
+//        Claims claims = jwtTokenManager.extractClaims(token);
+
+//        userSession.setId(Long.parseLong(claims.getId()));
+//        userSession.setAdmin(claims.get("admin", Boolean.class));
+
+        filterChain.doFilter(request, response);
     }
 }

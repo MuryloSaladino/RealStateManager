@@ -19,7 +19,7 @@ public class LoginController {
 
     @PostMapping("")
     public ResponseEntity<LoginResponse> login(@RequestBody LoginPayload payload) {
-        String token = loginService.login(payload.email, payload.password);
+        String token = loginService.login(payload.username(), payload.password());
 
         return ResponseEntity.ok(new LoginResponse(token));
     }

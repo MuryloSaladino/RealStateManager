@@ -36,19 +36,6 @@ public class UserEntity extends BaseEntity {
     private Set<ScheduleEntity> scheduleEntities;
 
 
-    public UserEntity() {}
-
-    public UserEntity(UserCreationPayload payload) {
-        super();
-        this.name = payload.name();
-        this.username = payload.username();
-        this.email = payload.email();
-        this.password = payload.password();
-        this.phone = payload.phone();
-        this.admin = payload.admin();
-    }
-
-
     public String getName() { return name; }
     public void setName(String name) {
         this.updateUpdatedAt();

@@ -1,10 +1,20 @@
 package com.bosch.realstatemanager.dto.user;
 
-public record UserCreationPayload(
-        String username,
-        String password,
-        String name,
-        String email,
-        String phone,
-        boolean admin
-) {}
+import jakarta.validation.constraints.NotEmpty;
+import lombok.Data;
+
+@Data
+public class UserCreationPayload {
+
+    private String username;
+
+    private String password;
+
+    private String name;
+
+    private String email;
+
+    private String phone;
+
+    private Boolean admin;
+}

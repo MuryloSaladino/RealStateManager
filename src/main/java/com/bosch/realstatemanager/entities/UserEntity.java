@@ -26,7 +26,7 @@ public class UserEntity extends BaseEntity {
     private String phone;
 
     @Column(name = "admin")
-    private boolean admin;
+    private Boolean admin;
 
     @Column(name = "deletedAt")
     @Temporal(TemporalType.TIMESTAMP)
@@ -79,8 +79,8 @@ public class UserEntity extends BaseEntity {
         this.phone = phone;
     }
 
-    public boolean isAdmin() { return admin; }
-    public void setAdmin(boolean admin) {
+    public Boolean isAdmin() { return admin; }
+    public void setAdmin(Boolean admin) {
         this.updateUpdatedAt();
         this.admin = admin;
     }

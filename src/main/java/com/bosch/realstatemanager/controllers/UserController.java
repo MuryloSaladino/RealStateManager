@@ -19,7 +19,7 @@ public class UserController {
 
     @PostMapping("")
     public ResponseEntity<UserEntityResponse> createUser(@RequestBody UserCreationPayload user) {
-        return ResponseEntity.ok(new UserEntityResponse(userService.save(user)));
+        return ResponseEntity.status(201).body(new UserEntityResponse(userService.save(user)));
     }
 
     @GetMapping("/{id}")
@@ -28,7 +28,14 @@ public class UserController {
     }
 
     @GetMapping("")
-    public ResponseEntity<List<UserEntity>> getAllUsers() {
-        return ResponseEntity.ok(userService.readAll());
+    public ResponseEntity<List<UserEntityResponse>> getAllUsers() {
+
+        List<UserEntityResponse> users = userService
+                .readAll()
+                .stream()
+                .map(UserEntityResponse::new)
+                .toList();
+
+        return ResponseEntity.ok(users);
     }
 }

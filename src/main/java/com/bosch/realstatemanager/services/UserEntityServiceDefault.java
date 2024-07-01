@@ -1,6 +1,7 @@
 package com.bosch.realstatemanager.services;
 
 import com.bosch.realstatemanager.dto.user.UserCreationPayload;
+import com.bosch.realstatemanager.dto.user.UserEntityResponse;
 import com.bosch.realstatemanager.dto.user.UserUpdatePayload;
 import com.bosch.realstatemanager.entities.UserEntity;
 import com.bosch.realstatemanager.exceptions.NotFoundException;

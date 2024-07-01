@@ -9,7 +9,7 @@ public class UserEntityResponse {
     public String name;
     public String email;
     public String phone;
-    public boolean admin;
+    public Boolean admin;
 
 
     public UserEntityResponse(UserEntity userEntity) {

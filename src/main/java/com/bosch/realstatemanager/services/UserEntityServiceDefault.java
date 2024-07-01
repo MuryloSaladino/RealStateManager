@@ -24,7 +24,7 @@ public class UserEntityServiceDefault implements UserEntityService {
     private BCryptPasswordEncoder bCryptPasswordEncoder;
 
     @Override
-    public UserEntity save(UserCreationPayload payload) {
+    public UserEntity create(UserCreationPayload payload) {
 
         UserEntity newUser = new UserEntity(payload);
         newUser.setPassword(bCryptPasswordEncoder.encode(newUser.getPassword()));

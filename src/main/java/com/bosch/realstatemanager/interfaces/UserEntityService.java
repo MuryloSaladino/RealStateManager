@@ -7,7 +7,7 @@ import com.bosch.realstatemanager.entities.UserEntity;
 import java.util.List;
 
 public interface UserEntityService {
-    UserEntity save(UserCreationPayload payload);
+    UserEntity create(UserCreationPayload payload);
     List<UserEntity> readAll();
     UserEntity readById(Long id);
     UserEntity readByUsername(String username);

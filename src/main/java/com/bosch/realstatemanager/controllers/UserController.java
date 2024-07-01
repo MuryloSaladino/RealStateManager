@@ -19,7 +19,7 @@ public class UserController {
 
     @PostMapping("")
     public ResponseEntity<UserEntityResponse> createUser(@RequestBody UserCreationPayload user) {
-        return ResponseEntity.ok(new UserEntityResponse(userService.save(user)));
+        return ResponseEntity.ok(new UserEntityResponse(userService.create(user)));
     }
 
     @GetMapping("/{id}")

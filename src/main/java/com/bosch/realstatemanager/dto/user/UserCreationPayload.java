@@ -1,10 +1,10 @@
 package com.bosch.realstatemanager.dto.user;
 
-public record UserCreationPayload(
-        String username,
-        String password,
-        String name,
-        String email,
-        String phone,
-        boolean admin
-) {}
+public class UserCreationPayload {
+    public String username;
+    public String password;
+    public String name;
+    public String email;
+    public String phone;
+    public boolean admin;
+}

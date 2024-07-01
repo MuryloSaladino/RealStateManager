@@ -1,13 +1,13 @@
 package com.bosch.realstatemanager.controllers;
 
 import com.bosch.realstatemanager.exceptions.BadRequestException;
+import com.bosch.realstatemanager.exceptions.ResponseException;
 import jakarta.servlet.http.HttpServletRequest;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
-import org.springframework.web.server.ResponseStatusException;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -31,8 +31,8 @@ public class ExceptionResponseHandler {
         return new ResponseEntity<>(result, HttpStatus.BAD_REQUEST);
     }
 
-    @ExceptionHandler(ResponseStatusException.class)
-    public ResponseEntity<Message> responseError(ResponseStatusException ex, HttpServletRequest request) {
+    @ExceptionHandler(ResponseException.class)
+    public ResponseEntity<Message> responseError(ResponseException ex, HttpServletRequest request) {
 
         return ResponseEntity
                 .status(ex.getStatusCode())

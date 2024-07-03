@@ -34,6 +34,6 @@ public class UserCreationPayload {
     private Boolean admin;
 
     public UserEntity toUser() {
-        return new UserEntity(username, password, name, email, phone, admin);
+        return new UserEntity(name, username, email, password, phone, admin);
     }
 }

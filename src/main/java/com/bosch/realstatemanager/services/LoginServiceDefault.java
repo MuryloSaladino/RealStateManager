@@ -38,7 +38,7 @@ public class LoginServiceDefault implements LoginService {
         if(!match) throw new UnauthorizedException();
 
         Map<String, Object> claims = new HashMap<>();
-        claims.put("admin", userQuery.get().isAdmin());
+        claims.put("admin", userQuery.get().getAdmin());
 
         return jwtTokenManager.buildToken(claims, userQuery.get().getUsername(), userQuery.get().getId());
     }

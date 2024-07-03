@@ -3,6 +3,7 @@ package com.bosch.realstatemanager.controllers;
 import com.bosch.realstatemanager.exceptions.BadRequestException;
 import com.bosch.realstatemanager.exceptions.ResponseException;
 import jakarta.servlet.http.HttpServletRequest;
+import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.MethodArgumentNotValidException;
@@ -33,14 +34,19 @@ public class ExceptionResponseHandler {
 
     @ExceptionHandler(ResponseException.class)
     public ResponseEntity<Message> responseError(ResponseException ex, HttpServletRequest request) {
-
         return ResponseEntity
                 .status(ex.getStatusCode())
                 .body(new Message(ex.getMessage()));
     }
 
-    @ExceptionHandler({ IllegalArgumentException.class })
-    public void handleBadRequest(Exception ex, HttpServletRequest request) {
-        throw new BadRequestException();
+    @ExceptionHandler({ IllegalArgumentException.class, DataIntegrityViolationException.class })
+    public ResponseEntity<Message> handleDataIntegrityViolation(Exception ex, HttpServletRequest request) {
+        return ResponseEntity
+                .status(400)
+                .body(new Message(
+                        "Something went wrong with your request." +
+                        "Maybe you tried creating something that already exists in out database" +
+                        "or your request does not fit our requirements."
+                ));
     }
 }

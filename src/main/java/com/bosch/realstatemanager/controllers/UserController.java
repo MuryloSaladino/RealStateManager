@@ -28,7 +28,14 @@ public class UserController {
     }
 
     @GetMapping("")
-    public ResponseEntity<List<UserEntity>> getAllUsers() {
-        return ResponseEntity.ok(userService.readAll());
+    public ResponseEntity<List<UserEntityResponse>> getAllUsers() {
+
+        List<UserEntityResponse> users = userService
+                .readAll()
+                .stream()
+                .map(UserEntityResponse::new)
+                .toList();
+
+        return ResponseEntity.ok(users);
     }
 }

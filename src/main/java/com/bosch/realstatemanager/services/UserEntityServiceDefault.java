@@ -1,6 +1,7 @@
 package com.bosch.realstatemanager.services;
 
 import com.bosch.realstatemanager.dto.user.UserCreationPayload;
+import com.bosch.realstatemanager.dto.user.UserEntityResponse;
 import com.bosch.realstatemanager.dto.user.UserUpdatePayload;
 import com.bosch.realstatemanager.entities.UserEntity;
 import com.bosch.realstatemanager.exceptions.NotFoundException;
@@ -26,7 +27,7 @@ public class UserEntityServiceDefault implements UserEntityService {
     @Override
     public UserEntity create(UserCreationPayload payload) {
 
-        UserEntity newUser = new UserEntity(payload);
+        UserEntity newUser = payload.toUser();
         newUser.setPassword(bCryptPasswordEncoder.encode(newUser.getPassword()));
 
         return userRepository.save(newUser);

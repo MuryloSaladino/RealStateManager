@@ -9,7 +9,7 @@ public class UserEntityResponse {
     public String name;
     public String email;
     public String phone;
-    public boolean admin;
+    public Boolean admin;
 
 
     public UserEntityResponse(UserEntity userEntity) {
@@ -18,6 +18,6 @@ public class UserEntityResponse {
         this.name = userEntity.getName();
         this.email = userEntity.getEmail();
         this.phone = userEntity.getPhone();
-        this.admin = userEntity.isAdmin();
+        this.admin = userEntity.getAdmin();
     }
 }

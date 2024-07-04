@@ -1,17 +1,14 @@
 package com.bosch.realstatemanager.services;
 
 import com.bosch.realstatemanager.dto.user.UserCreationPayload;
-import com.bosch.realstatemanager.dto.user.UserEntityResponse;
 import com.bosch.realstatemanager.dto.user.UserUpdatePayload;
 import com.bosch.realstatemanager.entities.UserEntity;
 import com.bosch.realstatemanager.exceptions.NotFoundException;
 import com.bosch.realstatemanager.interfaces.UserEntityService;
 import com.bosch.realstatemanager.repositories.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatusCode;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
-import org.springframework.web.server.ResponseStatusException;
 
 import java.util.List;
 

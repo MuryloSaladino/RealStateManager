@@ -52,8 +52,19 @@ public class UserController {
     @PatchMapping("/{id}")
     public ResponseEntity<UserEntityResponse> updateUser(@PathVariable Long id, @Valid @RequestBody UserUpdatePayload user) {
 
-        if(user.getAdmin() && !userSession.getAdmin()) throw new ForbiddenException();
+        if((user.getAdmin() != null && user.getAdmin()) && !userSession.getAdmin()) throw new ForbiddenException();
+        if(!userSession.getId().equals(id) && !userSession.getAdmin()) throw new ForbiddenException();
 
         return ResponseEntity.ok(new UserEntityResponse(userService.updateUser(id, user)));
+    }
+
+    @DeleteMapping("/{id}")
+    public ResponseEntity<?> deleteUser(@PathVariable Long id) {
+
+        if(!userSession.getId().equals(id) && !userSession.getAdmin()) throw new ForbiddenException();
+
+        userService.deleteUser(id);
+
+        return ResponseEntity.noContent().build();
     }
 }

@@ -33,12 +33,13 @@ public class ValidateTokenFilter implements Filter {
 
         String token = request.getHeader("Authorization");
 
-        if(token == null) return;
+        if(token != null) {
+            token = token.replace("Bearer ", "");
+            Claims claims = jwtTokenManager.extractClaims(token);
 
-        Claims claims = jwtTokenManager.extractClaims(token);
-
-        userSession.setId(Long.parseLong(claims.getId()));
-        userSession.setAdmin(claims.get("admin", Boolean.class));
+            userSession.setId(Long.parseLong(claims.getId()));
+            userSession.setAdmin(claims.get("admin", Boolean.class));
+        }
 
         filterChain.doFilter(request, response);
     }

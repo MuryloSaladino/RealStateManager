@@ -18,7 +18,7 @@ public class FiltersConfiguration {
 
         FilterRegistrationBean<ValidateTokenFilter> filter = new FilterRegistrationBean<ValidateTokenFilter>();
         filter.setFilter(validateTokenFilter);
-        filter.addUrlPatterns("/**");
+        filter.addUrlPatterns("/*");
 
         return filter;
     }

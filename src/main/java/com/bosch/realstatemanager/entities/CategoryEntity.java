@@ -1,13 +1,13 @@
 package com.bosch.realstatemanager.entities;
 
 import jakarta.persistence.*;
+import lombok.Getter;
 
 import java.sql.Timestamp;
 import java.util.Set;
 
-@Entity
-@Table(name = "RealStateCategoryEntity")
-public class RealStateCategoryEntity extends BaseEntity {
+@Getter @Entity @Table(name = "RealStateCategoryEntity")
+public class CategoryEntity extends BaseEntity {
 
     @Column(name = "name")
     private String name;
@@ -20,13 +20,18 @@ public class RealStateCategoryEntity extends BaseEntity {
     private Set<RealStateEntity> realStateEntities;
 
 
-    public String getName() { return name; }
+    public CategoryEntity() {}
+
+    public CategoryEntity(String name) {
+        this.name = name;
+    }
+
+
     public void setName(String name) {
         this.updateUpdatedAt();
         this.name = name;
     }
 
-    public Timestamp getDeletedAt() { return deletedAt; }
     public void setDeletedAt(Timestamp deletedAt) {
         this.updateUpdatedAt();
         this.deletedAt = deletedAt;

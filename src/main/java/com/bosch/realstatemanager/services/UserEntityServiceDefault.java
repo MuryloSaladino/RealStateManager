@@ -59,7 +59,22 @@ public class UserEntityServiceDefault implements UserEntityService {
     @Override
     public UserEntity updateUser(Long id, UserUpdatePayload payload) {
 
-        throw new ResponseStatusException(HttpStatusCode.valueOf(501));
+        var query = userRepository.findById(id);
+        if(query.isEmpty()) throw new NotFoundException();
+
+        UserEntity user = query.get();
+        user.setUsername(payload.getUsername() != null ? payload.getUsername() : user.getUsername());
+        user.setEmail(payload.getEmail() != null ? payload.getEmail() : user.getEmail());
+        user.setName(payload.getName() != null ? payload.getName() : user.getName());
+        user.setPhone(payload.getPhone() != null ? payload.getPhone() : user.getPhone());
+        user.setAdmin(payload.getAdmin() != null ? payload.getAdmin() : user.getAdmin());
+        user.setPassword(
+                payload.getPassword() != null ?
+                bCryptPasswordEncoder.encode(payload.getPassword()) :
+                user.getPassword()
+        );
+
+        return userRepository.save(user);
     }
 
     @Override

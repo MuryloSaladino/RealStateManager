@@ -1,14 +1,11 @@
 package com.bosch.realstatemanager.dto.user;
 
 import com.bosch.realstatemanager.entities.UserEntity;
-import jakarta.validation.constraints.Email;
-import jakarta.validation.constraints.NotEmpty;
-import jakarta.validation.constraints.Size;
+import jakarta.validation.constraints.*;
 import lombok.Data;
 import lombok.Getter;
 
-@Getter
-@Data
+@Getter @Data
 public class UserCreationPayload {
 
     @NotEmpty(message = "You must provide a username")
@@ -16,17 +13,17 @@ public class UserCreationPayload {
     private String username;
 
     @NotEmpty(message = "You must provide a password")
+    @Pattern(regexp = "^(?=.*[a-z])(?=.*[A-Z])(?=.*\\d)(?=.*[@$!%*?&])[A-Za-z\\d@$!%*?&]{8,}$", message = "Password is too week")
     private String password;
 
     @NotEmpty(message = "You must provide a name")
-    @Size(max = 255, message = "Name length cannot be above 255 characters")
+    @Size(min = 3, max = 255, message = "Name length must be between 3 and 255 characters")
     private String name;
 
     @NotEmpty(message = "You must provide a email")
     @Email(message = "Email must be valid")
     private String email;
 
-    @NotEmpty(message = "You must provide a phone")
     private String phone;
 
     private Boolean admin;

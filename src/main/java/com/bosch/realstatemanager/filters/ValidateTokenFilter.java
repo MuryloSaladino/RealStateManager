@@ -31,12 +31,14 @@ public class ValidateTokenFilter implements Filter {
         HttpServletRequest request = (HttpServletRequest) servletRequest;
         HttpServletResponse response = (HttpServletResponse) servletResponse;
 
-//        String token = request.getHeader("Authorization");
+        String token = request.getHeader("Authorization");
 
-//        Claims claims = jwtTokenManager.extractClaims(token);
+        if(token == null) return;
 
-//        userSession.setId(Long.parseLong(claims.getId()));
-//        userSession.setAdmin(claims.get("admin", Boolean.class));
+        Claims claims = jwtTokenManager.extractClaims(token);
+
+        userSession.setId(Long.parseLong(claims.getId()));
+        userSession.setAdmin(claims.get("admin", Boolean.class));
 
         filterChain.doFilter(request, response);
     }

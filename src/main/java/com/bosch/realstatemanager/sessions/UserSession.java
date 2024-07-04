@@ -1,21 +1,15 @@
 package com.bosch.realstatemanager.sessions;
 
+import lombok.Getter;
+import lombok.Setter;
+
+@Getter @Setter
 public class UserSession {
-
     private Long id;
-    private boolean admin;
+    private Boolean admin;
 
-    public Long getId() {
-        return id;
-    }
-    public void setId(Long id) {
+    public UserSession(Long id, Boolean admin) {
         this.id = id;
-    }
-
-    public boolean isAdmin() {
-        return admin;
-    }
-    public void setAdmin(boolean admin) {
         this.admin = admin;
     }
 }

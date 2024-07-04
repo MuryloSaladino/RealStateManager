@@ -33,5 +33,5 @@ public class DependenciesConfiguration {
     public BCryptPasswordEncoder passwordEncoder() { return new BCryptPasswordEncoder(); }
 
     @Bean @Scope(value = WebApplicationContext.SCOPE_REQUEST, proxyMode = ScopedProxyMode.TARGET_CLASS) @Primary
-    public UserSession userSession() { return new UserSession(); }
+    public UserSession userSession() { return new UserSession(null, false); }
 }

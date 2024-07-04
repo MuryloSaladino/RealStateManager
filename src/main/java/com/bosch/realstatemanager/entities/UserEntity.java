@@ -42,8 +42,8 @@ public class UserEntity extends BaseEntity {
         this.username = username;
         this.email = email;
         this.phone = phone;
-        this.admin = admin;
-        this.setPassword(password);
+        this.password = password;
+        this.admin = admin != null ? admin : false;
     }
 
 

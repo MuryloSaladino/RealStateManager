@@ -2,6 +2,7 @@ package com.bosch.realstatemanager.controllers;
 
 import com.bosch.realstatemanager.dto.user.UserCreationPayload;
 import com.bosch.realstatemanager.dto.user.UserEntityResponse;
+import com.bosch.realstatemanager.dto.user.UserUpdatePayload;
 import com.bosch.realstatemanager.entities.UserEntity;
 import com.bosch.realstatemanager.exceptions.ForbiddenException;
 import com.bosch.realstatemanager.interfaces.UserEntityService;
@@ -48,5 +49,11 @@ public class UserController {
         return ResponseEntity.ok(users);
     }
 
+    @PatchMapping("/{id}")
+    public ResponseEntity<UserEntityResponse> updateUser(@PathVariable Long id, @Valid @RequestBody UserUpdatePayload user) {
 
+        if(user.getAdmin() && !userSession.getAdmin()) throw new ForbiddenException();
+
+        return ResponseEntity.ok(new UserEntityResponse(userService.updateUser(id, user)));
+    }
 }

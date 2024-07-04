@@ -63,16 +63,13 @@ public class UserEntityServiceDefault implements UserEntityService {
         if(query.isEmpty()) throw new NotFoundException();
 
         UserEntity user = query.get();
-        user.setUsername(payload.getUsername() != null ? payload.getUsername() : user.getUsername());
-        user.setEmail(payload.getEmail() != null ? payload.getEmail() : user.getEmail());
-        user.setName(payload.getName() != null ? payload.getName() : user.getName());
-        user.setPhone(payload.getPhone() != null ? payload.getPhone() : user.getPhone());
-        user.setAdmin(payload.getAdmin() != null ? payload.getAdmin() : user.getAdmin());
-        user.setPassword(
-                payload.getPassword() != null ?
-                bCryptPasswordEncoder.encode(payload.getPassword()) :
-                user.getPassword()
-        );
+
+        if(payload.getEmail() != null) user.setEmail(payload.getEmail());
+        if(payload.getName() != null) user.setName(payload.getName());
+        if(payload.getPhone() != null) user.setPhone(payload.getPhone());
+        if(payload.getAdmin() != null) user.setAdmin(payload.getAdmin());
+        if(payload.getUsername() != null) user.setUsername(payload.getUsername().replaceAll("//s", ""));
+        if(payload.getPassword() != null) user.setPassword(bCryptPasswordEncoder.encode(payload.getPassword()));
 
         return userRepository.save(user);
     }

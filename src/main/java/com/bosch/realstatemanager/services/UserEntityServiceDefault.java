@@ -45,15 +45,6 @@ public class UserEntityServiceDefault implements UserEntityService {
     }
 
     @Override
-    public UserEntity readByUsername(String username) {
-
-        var userQuery = userRepository.findByUsername(username);
-        if(userQuery.isEmpty()) throw new NotFoundException();
-
-        return userQuery.get();
-    }
-
-    @Override
     public UserEntity updateUser(Long id, UserUpdatePayload payload) {
 
         var query = userRepository.findById(id);

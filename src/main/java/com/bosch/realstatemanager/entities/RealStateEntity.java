@@ -28,7 +28,7 @@ public class RealStateEntity extends BaseEntity {
 
     @ManyToOne
     @JoinColumn(name = "realStateCategoryEntityId", nullable = false)
-    private RealStateCategoryEntity realStateCategory;
+    private CategoryEntity realStateCategory;
 
     @OneToMany(mappedBy = "realStateEntity")
     private Set<ScheduleEntity> realStateEntities;
@@ -64,8 +64,8 @@ public class RealStateEntity extends BaseEntity {
         this.address = address;
     }
 
-    public RealStateCategoryEntity getRealStateCategory() { return realStateCategory; }
-    public void setRealStateCategory(RealStateCategoryEntity realStateCategory) {
+    public CategoryEntity getRealStateCategory() { return realStateCategory; }
+    public void setRealStateCategory(CategoryEntity realStateCategory) {
         this.updateUpdatedAt();
         this.realStateCategory = realStateCategory;
     }

@@ -32,7 +32,7 @@ public class UserEntityServiceDefault implements UserEntityService {
 
     @Override
     public List<UserEntity> readAll() {
-        return userRepository.findAll();
+        return (List<UserEntity>) userRepository.findAll();
     }
 
     @Override

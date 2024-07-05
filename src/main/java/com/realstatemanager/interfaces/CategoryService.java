@@ -7,7 +7,7 @@ import com.realstatemanager.entities.RealStateEntity;
 import java.util.List;
 
 public interface CategoryService {
-    CategoryEntity create(CategoryCreation category);
+    CategoryEntity create(CategoryCreation payload);
     List<CategoryEntity> readAll();
     List<RealStateEntity> readByCategory(Long id);
 }

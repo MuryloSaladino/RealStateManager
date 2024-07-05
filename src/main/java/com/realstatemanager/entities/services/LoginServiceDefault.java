@@ -1,4 +1,4 @@
-package com.realstatemanager.services;
+package com.realstatemanager.entities.services;
 
 import com.realstatemanager.exceptions.NotFoundException;
 import com.realstatemanager.exceptions.UnauthorizedException;

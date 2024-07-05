@@ -1,4 +1,4 @@
-package com.realstatemanager.services;
+package com.realstatemanager.entities.services;
 
 import com.realstatemanager.exceptions.UnauthorizedException;
 import com.realstatemanager.interfaces.JwtTokenManager;

@@ -14,8 +14,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
-@RestController
-@RequestMapping("/users")
+@RestController @RequestMapping("/users")
 public class UserController {
 
     @Autowired
@@ -25,7 +24,7 @@ public class UserController {
     private UserSession userSession;
 
     @PostMapping("")
-    public ResponseEntity<UserEntityResponse> createUser(@Valid @RequestBody UserCreationPayload user) {
+    protected ResponseEntity<UserEntityResponse> createUser(@Valid @RequestBody UserCreationPayload user) {
 
         if(user.getAdmin() && !userSession.getAdmin()) throw new ForbiddenException();
 
@@ -33,12 +32,12 @@ public class UserController {
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<UserEntity> getUser(@PathVariable Long id) {
+    protected ResponseEntity<UserEntity> getUser(@PathVariable Long id) {
         return ResponseEntity.ok(userService.readById(id));
     }
 
     @GetMapping("")
-    public ResponseEntity<List<UserEntityResponse>> getAllUsers() {
+    protected ResponseEntity<List<UserEntityResponse>> getAllUsers() {
 
         List<UserEntityResponse> users = userService
                 .readAll()
@@ -50,7 +49,7 @@ public class UserController {
     }
 
     @PatchMapping("/{id}")
-    public ResponseEntity<UserEntityResponse> updateUser(@PathVariable Long id, @Valid @RequestBody UserUpdatePayload user) {
+    protected ResponseEntity<UserEntityResponse> updateUser(@PathVariable Long id, @Valid @RequestBody UserUpdatePayload user) {
 
         if((user.getAdmin() != null && user.getAdmin()) && !userSession.getAdmin()) throw new ForbiddenException();
         if(!userSession.getId().equals(id) && !userSession.getAdmin()) throw new ForbiddenException();
@@ -59,7 +58,7 @@ public class UserController {
     }
 
     @DeleteMapping("/{id}")
-    public ResponseEntity<?> deleteUser(@PathVariable Long id) {
+    protected ResponseEntity<?> deleteUser(@PathVariable Long id) {
 
         if(!userSession.getId().equals(id) && !userSession.getAdmin()) throw new ForbiddenException();
 

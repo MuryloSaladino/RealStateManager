@@ -1,6 +1,7 @@
 package com.realstatemanager.dto.category;
 
-import com.bosch.realstatemanager.entities.CategoryEntity;
+
+import com.realstatemanager.entities.CategoryEntity;
 
 public class CategoryResponse {
 

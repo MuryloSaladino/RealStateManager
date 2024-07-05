@@ -38,15 +38,12 @@ public class RealStateEntity extends BaseEntity {
 
     public RealStateEntity() {}
 
-    public RealStateEntity(
-            Boolean sold, Float price, Integer squaredMeters, AddressEntity address, CategoryEntity category
-    ) {
+    public RealStateEntity(Boolean sold, Float price, Integer squaredMeters, AddressEntity address) {
         super();
         this.sold = sold;
         this.price = price;
         this.squaredMeters = squaredMeters;
         this.address = address;
-        this.category = category;
     }
 
 

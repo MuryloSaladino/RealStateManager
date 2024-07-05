@@ -1,13 +1,13 @@
 package com.realstatemanager.interfaces;
 
-import com.realstatemanager.dto.category.CategoryCreation;
+import com.realstatemanager.dto.category.CategoryCreationPayload;
 import com.realstatemanager.entities.CategoryEntity;
 import com.realstatemanager.entities.RealStateEntity;
 
 import java.util.List;
 
 public interface CategoryService {
-    CategoryEntity create(CategoryCreation payload);
+    CategoryEntity create(CategoryCreationPayload payload);
     List<CategoryEntity> readAll();
     List<RealStateEntity> readByCategory(Long id);
 }

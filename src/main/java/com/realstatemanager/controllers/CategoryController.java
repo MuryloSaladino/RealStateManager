@@ -1,6 +1,6 @@
 package com.realstatemanager.controllers;
 
-import com.realstatemanager.dto.category.CategoryCreation;
+import com.realstatemanager.dto.category.CategoryCreationPayload;
 import com.realstatemanager.dto.category.CategoryResponse;
 import com.realstatemanager.exceptions.ForbiddenException;
 import com.realstatemanager.exceptions.UnauthorizedException;
@@ -23,7 +23,7 @@ public class CategoryController {
     CategoryService categoryService;
 
     @PostMapping("")
-    protected ResponseEntity<CategoryResponse> createCategory(@Valid @RequestBody CategoryCreation body) {
+    protected ResponseEntity<CategoryResponse> createCategory(@Valid @RequestBody CategoryCreationPayload body) {
 
         if(userSession.getId() == null) throw new UnauthorizedException();
         if(!userSession.getAdmin()) throw new ForbiddenException();

@@ -1,6 +1,6 @@
-package com.realstatemanager.entities.services;
+package com.realstatemanager.services;
 
-import com.realstatemanager.dto.category.CategoryCreation;
+import com.realstatemanager.dto.category.CategoryCreationPayload;
 import com.realstatemanager.entities.CategoryEntity;
 import com.realstatemanager.entities.RealStateEntity;
 import com.realstatemanager.exceptions.NotFoundException;
@@ -23,7 +23,7 @@ public class CategoryEntityServiceDefault implements CategoryService {
 
 
     @Override
-    public CategoryEntity create(CategoryCreation payload) {
+    public CategoryEntity create(CategoryCreationPayload payload) {
         return categoryRepository.save(payload.toCategory());
     }
 

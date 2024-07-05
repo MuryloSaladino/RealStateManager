@@ -29,7 +29,7 @@ public class RealStateEntity extends BaseEntity {
     private AddressEntity address;
 
     @ManyToOne
-    @JoinColumn(name = "realStateCategoryEntityId", nullable = false)
+    @JoinColumn(name = "categoryEntityId", nullable = false)
     private CategoryEntity category;
 
     @OneToMany(mappedBy = "realStateEntity")

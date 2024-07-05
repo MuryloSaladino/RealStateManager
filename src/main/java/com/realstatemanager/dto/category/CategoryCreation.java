@@ -1,4 +1,4 @@
-package com.bosch.realstatemanager.dto.realStateCategory;
+package com.realstatemanager.dto.category;
 
 import com.bosch.realstatemanager.entities.CategoryEntity;
 

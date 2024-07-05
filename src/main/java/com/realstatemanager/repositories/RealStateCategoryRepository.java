@@ -1,6 +1,6 @@
-package com.bosch.realstatemanager.repositories;
+package com.realstatemanager.repositories;
 
-import com.bosch.realstatemanager.entities.CategoryEntity;
+import com.realstatemanager.entities.CategoryEntity;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 

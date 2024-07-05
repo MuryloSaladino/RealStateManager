@@ -24,7 +24,7 @@ public class CategoryEntityServiceDefault implements CategoryService {
 
     @Override
     public CategoryEntity create(CategoryCreationPayload payload) {
-        return categoryRepository.save(payload.toCategory());
+        return categoryRepository.save(payload.toEntity());
     }
 
     @Override

@@ -1,12 +1,13 @@
 package com.realstatemanager.dto.address;
 
 import com.realstatemanager.entities.AddressEntity;
+import com.realstatemanager.interfaces.EntityCreationPayload;
 import jakarta.validation.constraints.*;
 import lombok.Data;
 import lombok.Getter;
 
 @Getter @Data
-public class AddressCreationPayload {
+public class AddressCreationPayload implements EntityCreationPayload<AddressEntity> {
 
     @NotEmpty(message = "You must provide a street")
     @Size(min = 1, max = 45)
@@ -28,6 +29,7 @@ public class AddressCreationPayload {
     @Size(max = 2)
     private String state;
 
+    @Override
     public AddressEntity toEntity() {
         return new AddressEntity(street, zipcode, number, city, state);
     }

@@ -1,12 +1,13 @@
 package com.realstatemanager.dto.user;
 
 import com.realstatemanager.entities.UserEntity;
+import com.realstatemanager.interfaces.EntityCreationPayload;
 import jakarta.validation.constraints.*;
 import lombok.Data;
 import lombok.Getter;
 
 @Getter @Data
-public class UserCreationPayload {
+public class UserCreationPayload implements EntityCreationPayload<UserEntity> {
 
     @NotEmpty(message = "You must provide a username")
     @Size(min = 4, message = "Username must have at least 4 characters")
@@ -28,7 +29,8 @@ public class UserCreationPayload {
 
     private Boolean admin;
 
-    public UserEntity toUser() {
+    @Override
+    public UserEntity toEntity() {
         return new UserEntity(name, username, email, password, phone, admin);
     }
 }

@@ -1,4 +1,4 @@
-package com.realstatemanager.entities.services;
+package com.realstatemanager.services;
 
 import com.realstatemanager.dto.user.UserCreationPayload;
 import com.realstatemanager.dto.user.UserUpdatePayload;

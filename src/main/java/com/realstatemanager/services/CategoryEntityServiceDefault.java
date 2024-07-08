@@ -5,6 +5,7 @@ import com.realstatemanager.entities.CategoryEntity;
 import com.realstatemanager.entities.RealStateEntity;
 import com.realstatemanager.exceptions.NotFoundException;
 import com.realstatemanager.interfaces.CategoryService;
+import com.realstatemanager.interfaces.RealStateService;
 import com.realstatemanager.repositories.CategoryRepository;
 import com.realstatemanager.repositories.RealStateRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,7 +20,7 @@ public class CategoryEntityServiceDefault implements CategoryService {
     CategoryRepository categoryRepository;
 
     @Autowired
-    RealStateRepository realStateRepository;
+    RealStateService realStateService;
 
 
     @Override
@@ -30,14 +31,5 @@ public class CategoryEntityServiceDefault implements CategoryService {
     @Override
     public List<CategoryEntity> readAll() {
         return (List<CategoryEntity>) categoryRepository.findAll();
-    }
-
-    @Override
-    public List<RealStateEntity> readByCategory(Long id) {
-
-        var query = categoryRepository.findById(id);
-        if(query.isEmpty()) throw new NotFoundException();
-
-        return realStateRepository.findByCategory(query.get());
     }
 }

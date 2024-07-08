@@ -24,11 +24,11 @@ public class UserController {
     private UserSession userSession;
 
     @PostMapping("")
-    protected ResponseEntity<UserEntityResponse> createUser(@Valid @RequestBody UserCreationPayload user) {
+    protected ResponseEntity<UserEntityResponse> createUser(@Valid @RequestBody UserCreationPayload body) {
 
-        if(user.getAdmin() && !userSession.getAdmin()) throw new ForbiddenException();
+        if(body.getAdmin()) userSession.verifyAdmin();
 
-        return ResponseEntity.ok(new UserEntityResponse(userService.create(user)));
+        return ResponseEntity.ok(new UserEntityResponse(userService.create(body)));
     }
 
     @GetMapping("/{id}")
@@ -49,18 +49,18 @@ public class UserController {
     }
 
     @PatchMapping("/{id}")
-    protected ResponseEntity<UserEntityResponse> updateUser(@PathVariable Long id, @Valid @RequestBody UserUpdatePayload user) {
+    protected ResponseEntity<UserEntityResponse> updateUser(@PathVariable Long id, @Valid @RequestBody UserUpdatePayload body) {
 
-        if((user.getAdmin() != null && user.getAdmin()) && !userSession.getAdmin()) throw new ForbiddenException();
-        if(!userSession.getId().equals(id) && !userSession.getAdmin()) throw new ForbiddenException();
+        if(body.getAdmin() != null && body.getAdmin()) userSession.verifyAdmin();
+        userSession.verifyOwnUserOrAdmin(id);
 
-        return ResponseEntity.ok(new UserEntityResponse(userService.updateUser(id, user)));
+        return ResponseEntity.ok(new UserEntityResponse(userService.updateUser(id, body)));
     }
 
     @DeleteMapping("/{id}")
     protected ResponseEntity<?> deleteUser(@PathVariable Long id) {
 
-        if(!userSession.getId().equals(id) && !userSession.getAdmin()) throw new ForbiddenException();
+        userSession.verifyOwnUserOrAdmin(id);
 
         userService.deleteUser(id);
 

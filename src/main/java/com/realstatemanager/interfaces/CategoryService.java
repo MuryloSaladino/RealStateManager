@@ -9,5 +9,4 @@ import java.util.List;
 public interface CategoryService {
     CategoryEntity create(CategoryCreationPayload payload);
     List<CategoryEntity> readAll();
-    List<RealStateEntity> readByCategory(Long id);
 }

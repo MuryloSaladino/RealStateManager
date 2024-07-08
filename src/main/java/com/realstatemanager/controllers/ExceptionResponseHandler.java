@@ -8,13 +8,14 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
+import org.springframework.web.bind.annotation.RestControllerAdvice;
 
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-@ControllerAdvice
+@RestControllerAdvice
 public class ExceptionResponseHandler {
 
     public record Message(String message) {}
@@ -38,7 +39,7 @@ public class ExceptionResponseHandler {
                 .body(new Message(ex.getMessage()));
     }
 
-    @ExceptionHandler({ IllegalArgumentException.class, DataIntegrityViolationException.class })
+    @ExceptionHandler({ DataIntegrityViolationException.class })
     public ResponseEntity<Message> handleDataIntegrityViolation(Exception ex, HttpServletRequest request) {
         return ResponseEntity
                 .status(400)

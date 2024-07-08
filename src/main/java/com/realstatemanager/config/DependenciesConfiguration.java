@@ -1,11 +1,7 @@
 package com.realstatemanager.config;
 
-import com.realstatemanager.interfaces.JwtTokenManager;
-import com.realstatemanager.interfaces.LoginService;
-import com.realstatemanager.interfaces.UserEntityService;
-import com.realstatemanager.services.JwtTokenManagerService;
-import com.realstatemanager.services.LoginServiceDefault;
-import com.realstatemanager.services.UserEntityServiceDefault;
+import com.realstatemanager.interfaces.*;
+import com.realstatemanager.services.*;
 import com.realstatemanager.sessions.UserSession;
 import org.springframework.context.annotation.*;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
@@ -18,6 +14,12 @@ public class DependenciesConfiguration {
     public UserEntityService userEntityService() {
         return new UserEntityServiceDefault();
     }
+
+    @Bean @Scope() @Primary
+    public CategoryService categoryService() { return new CategoryEntityServiceDefault(); }
+
+    @Bean @Scope() @Primary
+    public RealStateService realStateService() { return new RealStateEntityServiceDefault(); }
 
     @Bean @Scope() @Primary
     public LoginService loginService() {

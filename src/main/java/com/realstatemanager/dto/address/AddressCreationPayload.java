@@ -17,7 +17,7 @@ public class AddressCreationPayload implements EntityCreationPayload<AddressEnti
     @Pattern(regexp = "\\d{5}-\\d{3}", message = "Invalid Brazilian ZIP code format")
     private String zipcode;
 
-    @NotEmpty(message = "You must provide a number")
+    @NotNull(message = "You must provide a number")
     @Positive(message = "Number must be positive")
     private Integer number;
 

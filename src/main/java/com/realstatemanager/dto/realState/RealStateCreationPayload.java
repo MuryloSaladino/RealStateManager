@@ -6,6 +6,7 @@ import com.realstatemanager.interfaces.EntityCreationPayload;
 import jakarta.validation.Valid;
 import jakarta.validation.constraints.AssertFalse;
 import jakarta.validation.constraints.NotEmpty;
+import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Positive;
 import lombok.Data;
 import lombok.Getter;
@@ -13,28 +14,27 @@ import lombok.Getter;
 @Getter @Data
 public class RealStateCreationPayload implements EntityCreationPayload<RealStateEntity> {
 
-    @NotEmpty(message = "You must provide a price")
+    @NotNull(message = "You must provide a price")
     @Positive(message = "Price must have a positive value")
     private Float price;
 
     @AssertFalse
     private Boolean sold;
 
-    @NotEmpty(message = "You must provide a value for the squared meters")
+    @NotNull(message = "You must provide a value for the squared meters")
     @Positive(message = "Squared meters must have a positive value")
     private Integer squaredMeters;
 
     @Valid
-    @NotEmpty(message = "You must provide a address object")
-    private AddressCreationPayload addressCreationPayload;
+    private AddressCreationPayload address;
 
-    @NotEmpty(message = "You must provide a category id")
+    @NotNull(message = "You must provide a category id")
     @Positive(message = "Category id must be a positive number")
     private Long categoryId;
 
 
     @Override
     public RealStateEntity toEntity() {
-        return new RealStateEntity(sold, price, squaredMeters, addressCreationPayload.toEntity());
+        return new RealStateEntity(sold, price, squaredMeters, address.toEntity());
     }
 }

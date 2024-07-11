@@ -28,8 +28,6 @@ public class LoginServiceDefault implements LoginService {
     @Override
     public String login(String username, String password) {
 
-        System.out.println(username + " " + password);
-
         var userQuery = userRepository.findByUsername(username);
         if(userQuery.isEmpty()) throw new NotFoundException();
 

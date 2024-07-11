@@ -6,31 +6,27 @@ import lombok.Setter;
 
 import java.sql.Timestamp;
 
-@Getter @Entity @Table(name = "AddressEntity")
+@Getter @Entity @Table()
 public class AddressEntity extends BaseEntity {
 
-    @Column(name = "street")
+    @Column()
     private String street;
 
-    @Column(name = "zipcode")
+    @Column()
     private String zipcode;
 
-    @Column(name = "number")
+    @Column()
     private Integer number;
 
-    @Column(name = "city")
+    @Column()
     private String city;
 
-    @Column(name = "state")
+    @Column()
     private String state;
 
     @Getter @Setter
-    @Column(name = "deletedAt")
-    @Temporal(TemporalType.TIMESTAMP)
+    @Column() @Temporal(TemporalType.TIMESTAMP)
     private Timestamp deletedAt;
-
-    @OneToOne(mappedBy = "address")
-    public RealStateEntity realStateEntity;
 
 
     public AddressEntity() {}

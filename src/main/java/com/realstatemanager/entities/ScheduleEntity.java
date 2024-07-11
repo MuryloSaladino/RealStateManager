@@ -8,16 +8,12 @@ import java.sql.Time;
 import java.sql.Timestamp;
 import java.util.Date;
 
-@Getter @Entity @Table(name = "ScheduleEntity")
+@Getter @Entity @Table()
 public class ScheduleEntity extends BaseEntity {
 
-    @Column(name = "date")
+    @Column()
     @Temporal(TemporalType.DATE)
     private Date date;
-
-    @Column(name = "hour")
-    @Temporal(TemporalType.TIME)
-    private Time hour;
 
     @ManyToOne
     @JoinColumn(name = "userEntityId", nullable = false)
@@ -28,19 +24,15 @@ public class ScheduleEntity extends BaseEntity {
     private RealStateEntity realStateEntity;
 
     @Setter
-    @Column(name = "deletedAt")
-    @Temporal(TemporalType.TIMESTAMP)
+    @Column() @Temporal(TemporalType.TIMESTAMP)
     private Timestamp deletedAt;
 
 
     public ScheduleEntity() {}
 
-    public ScheduleEntity(Date date, Time hour, UserEntity userEntity, RealStateEntity realStateEntity) {
+    public ScheduleEntity(Date date) {
         super();
         this.date = date;
-        this.hour = hour;
-        this.userEntity = userEntity;
-        this.realStateEntity = realStateEntity;
     }
 
 
@@ -49,8 +41,13 @@ public class ScheduleEntity extends BaseEntity {
         this.date = date;
     }
 
-    public void setHour(Time hour) {
+    public void setUserEntity(UserEntity userEntity) {
         this.updateUpdatedAt();
-        this.hour = hour;
+        this.userEntity = userEntity;
+    }
+
+    public void setRealStateEntity(RealStateEntity realStateEntity) {
+        this.updateUpdatedAt();
+        this.realStateEntity = realStateEntity;
     }
 }

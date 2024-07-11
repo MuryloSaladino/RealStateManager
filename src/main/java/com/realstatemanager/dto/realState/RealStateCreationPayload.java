@@ -35,6 +35,6 @@ public class RealStateCreationPayload implements EntityCreationPayload<RealState
 
     @Override
     public RealStateEntity toEntity() {
-        return new RealStateEntity(sold, price, squaredMeters, address.toEntity());
+        return new RealStateEntity(sold, price, squaredMeters);
     }
 }

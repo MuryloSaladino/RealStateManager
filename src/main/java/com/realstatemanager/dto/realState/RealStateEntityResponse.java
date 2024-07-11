@@ -5,6 +5,7 @@ import com.realstatemanager.entities.RealStateEntity;
 
 public class RealStateEntityResponse {
 
+    public Long id;
     public Boolean sold;
     public Float price;
     public Integer squaredMeters;
@@ -12,6 +13,7 @@ public class RealStateEntityResponse {
     public String category;
 
     public RealStateEntityResponse(RealStateEntity realStateEntity) {
+        this.id = realStateEntity.getId();
         this.sold = realStateEntity.getSold();
         this.price = realStateEntity.getPrice();
         this.squaredMeters = realStateEntity.getSquaredMeters();

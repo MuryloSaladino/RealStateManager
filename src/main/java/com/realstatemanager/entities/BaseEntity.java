@@ -12,11 +12,11 @@ public class BaseEntity {
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(name = "createdAt")
+    @Column()
     @Temporal(TemporalType.TIMESTAMP)
     private Timestamp createdAt;
 
-    @Column(name = "updatedAt")
+    @Column()
     @Temporal(TemporalType.TIMESTAMP)
     protected Timestamp updatedAt;
 

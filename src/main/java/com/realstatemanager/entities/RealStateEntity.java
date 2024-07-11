@@ -7,43 +7,42 @@ import lombok.Setter;
 import java.sql.Timestamp;
 import java.util.Set;
 
-@Getter @Entity @Table(name = "RealStateEntity")
+@Getter @Entity @Table()
 public class RealStateEntity extends BaseEntity {
 
-    @Column(name = "sold")
+    @Column()
     private Boolean sold = false;
 
-    @Column(name = "price")
+    @Column()
     private Float price;
 
-    @Column(name = "squaredMeters")
+    @Column()
     private Integer squaredMeters;
 
     @Setter
-    @Column(name = "deletedAt")
+    @Column()
     @Temporal(TemporalType.TIMESTAMP)
     private Timestamp deletedAt;
 
     @OneToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "addressEntityId", referencedColumnName = "id")
+    @JoinColumn(referencedColumnName = "id")
     private AddressEntity address;
 
     @ManyToOne
-    @JoinColumn(name = "categoryEntityId", nullable = false)
+    @JoinColumn(nullable = false)
     private CategoryEntity category;
 
     @OneToMany(mappedBy = "realStateEntity")
-    private Set<ScheduleEntity> realStateEntities;
+    private Set<ScheduleEntity> scheduleEntities;
 
 
     public RealStateEntity() {}
 
-    public RealStateEntity(Boolean sold, Float price, Integer squaredMeters, AddressEntity address) {
+    public RealStateEntity(Boolean sold, Float price, Integer squaredMeters) {
         super();
         this.sold = sold;
         this.price = price;
         this.squaredMeters = squaredMeters;
-        this.address = address;
     }
 
 

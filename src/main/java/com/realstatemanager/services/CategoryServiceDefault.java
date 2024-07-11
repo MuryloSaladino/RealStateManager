@@ -2,19 +2,16 @@ package com.realstatemanager.services;
 
 import com.realstatemanager.dto.category.CategoryCreationPayload;
 import com.realstatemanager.entities.CategoryEntity;
-import com.realstatemanager.entities.RealStateEntity;
-import com.realstatemanager.exceptions.NotFoundException;
 import com.realstatemanager.interfaces.CategoryService;
 import com.realstatemanager.interfaces.RealStateService;
 import com.realstatemanager.repositories.CategoryRepository;
-import com.realstatemanager.repositories.RealStateRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 
 @Service
-public class CategoryEntityServiceDefault implements CategoryService {
+public class CategoryServiceDefault implements CategoryService {
 
     @Autowired
     CategoryRepository categoryRepository;

@@ -7,19 +7,16 @@ import lombok.Setter;
 import java.sql.Timestamp;
 import java.util.Set;
 
-@Getter @Entity @Table(name = "RealStateCategoryEntity")
+@Getter @Entity @Table()
 public class CategoryEntity extends BaseEntity {
 
-    @Column(name = "name")
+    @Column()
     private String name;
 
     @Getter @Setter
-    @Column(name = "deletedAt")
+    @Column()
     @Temporal(TemporalType.TIMESTAMP)
     private Timestamp deletedAt;
-
-    @OneToMany(mappedBy = "category")
-    private Set<RealStateEntity> realStateEntities;
 
 
     public CategoryEntity() {}

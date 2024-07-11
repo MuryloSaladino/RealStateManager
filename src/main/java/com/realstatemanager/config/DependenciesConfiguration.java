@@ -16,10 +16,13 @@ public class DependenciesConfiguration {
     }
 
     @Bean @Scope() @Primary
-    public CategoryService categoryService() { return new CategoryEntityServiceDefault(); }
+    public CategoryService categoryService() { return new CategoryServiceDefault(); }
 
     @Bean @Scope() @Primary
-    public RealStateService realStateService() { return new RealStateEntityServiceDefault(); }
+    public RealStateService realStateService() { return new RealStateServiceDefault(); }
+
+    @Bean @Scope() @Primary
+    public ScheduleService scheduleService() { return new ScheduleServiceDefault(); }
 
     @Bean @Scope() @Primary
     public LoginService loginService() {

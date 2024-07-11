@@ -7,34 +7,30 @@ import lombok.Setter;
 import java.sql.Timestamp;
 import java.util.Set;
 
-@Getter @Entity @Table(name = "UserEntity")
+@Getter @Entity @Table()
 public class UserEntity extends BaseEntity {
 
-    @Column(name = "name")
+    @Column()
     private String name;
 
-    @Column(name = "username", unique = true)
+    @Column(unique = true)
     private String username;
 
-    @Column(name = "email", unique = true)
+    @Column(unique = true)
     private String email;
 
-    @Column(name = "password")
+    @Column()
     private String password;
 
-    @Column(name = "phone", unique = true)
+    @Column(unique = true)
     private String phone;
 
-    @Column(name = "admin")
+    @Column()
     private Boolean admin;
 
     @Setter
-    @Column(name = "deletedAt")
-    @Temporal(TemporalType.TIMESTAMP)
+    @Column() @Temporal(TemporalType.TIMESTAMP)
     private Timestamp deletedAt;
-
-    @OneToMany(mappedBy = "userEntity")
-    private Set<ScheduleEntity> scheduleEntities;
 
 
     public UserEntity() {}
